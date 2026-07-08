@@ -5,6 +5,7 @@ import Layout from "../layouts/Layout.astro";
 import Reveal from "../components/Reveal.tsx";
 import AnimatedCounter from "../components/AnimatedCounter.tsx";
 import { getSiteSettings } from "../lib/settings";
+import { withBase } from "../lib/urls";
 
 const about = await getEntry("about", "about");
 if (!about) throw new Error("Missing content entry: src/content/about/about.md");
@@ -162,7 +163,7 @@ const yearsInPractice = new Date().getFullYear() - settings.founded;
         Curious how we'd approach your site?
       </h2>
       <a
-        href="/contact"
+        href={withBase("/contact")}
         class="shrink-0 rounded-full bg-ink px-8 py-4 text-sm font-medium tracking-wide text-paper transition-transform hover:scale-[1.03]"
       >
         Start a Conversation

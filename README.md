@@ -55,7 +55,7 @@ Markdown file under `src/content/`:
 - **Projects** → `src/content/projects/` (see below)
 
 Image fields in frontmatter are relative paths into `src/assets/` - drop a new image
-there and update the path. Commit + push, and Vercel redeploys automatically.
+there and update the path. Commit + push, and the active deployment redeploys automatically.
 
 ## Adding a Project
 
@@ -153,10 +153,25 @@ npm run dev        # http://localhost:4321
 
 This is a fully static site - no server runtime required.
 
+### Temporary: GitHub Pages
+
+GitHub Actions deploys `main` to GitHub Pages via `.github/workflows/deploy.yml`.
+The workflow builds with `GITHUB_PAGES=true`, which sets:
+
+- `site`: `https://schr-0dinger.github.io`
+- `base`: `/AkamArchitects`
+
+In the GitHub repo, set **Settings -> Pages -> Build and deployment -> Source** to
+**GitHub Actions**. After the workflow finishes, the site is published at:
+
+`https://schr-0dinger.github.io/AkamArchitects/`
+
+### Later: Vercel or Custom Domain
+
 1. Push to GitHub.
 2. Import the repo into [Vercel](https://vercel.com) (framework preset: Astro).
-3. Set the environment variables above in the Vercel project settings, if used.
-4. Every push to `main` deploys to production; every PR gets a preview deployment.
+3. Set `SITE_URL` to the production origin, if it differs from `https://akamarchitects.com`.
+4. Set `BASE_PATH=/` for a root-domain deployment.
+5. Set the environment variables above in the Vercel project settings, if used.
 
-Update `site.url` in `astro.config.mjs` and `src/lib/site.ts` if the production domain
-ever changes - the sitemap, canonical URLs, and JSON-LD all derive from it.
+The sitemap, canonical URLs, and JSON-LD derive from the configured `site` and `base`.

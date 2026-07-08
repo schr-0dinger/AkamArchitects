@@ -2,6 +2,7 @@
 import { getCollection, getEntry } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import Reveal from "../components/Reveal.tsx";
+import { withBase } from "../lib/urls";
 
 const page = await getEntry("pages", "expertise");
 const { eyebrow, heading, intro } = page?.data ?? {};
@@ -53,7 +54,7 @@ const expertise = (await getCollection("expertise")).sort((a, b) => a.data.order
         Not sure which service you need? Tell us about the project.
       </h2>
       <a
-        href="/contact"
+        href={withBase("/contact")}
         class="shrink-0 rounded-full bg-ink px-8 py-4 text-sm font-medium tracking-wide text-paper transition-transform hover:scale-[1.03]"
       >
         Get in Touch

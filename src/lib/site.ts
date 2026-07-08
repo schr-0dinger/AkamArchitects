@@ -1,25 +1,26 @@
 // Structural site config - routes and IA. Editorial content (name, contact info,
 // social links, etc.) lives in src/content/settings/site.md, not here.
+import { absoluteUrl, withBase } from "./urls";
 
-export const siteUrl = "https://akamarchitects.com";
+export const siteUrl = absoluteUrl("/").replace(/\/$/, "");
 export const siteLocale = "en_IN";
 
 export const navLinks = [
-  { label: "Projects", href: "/projects" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Expertise", href: "/expertise" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Projects", href: withBase("/projects") },
+  { label: "Gallery", href: withBase("/gallery") },
+  { label: "Expertise", href: withBase("/expertise") },
+  { label: "About", href: withBase("/about") },
+  { label: "Contact", href: withBase("/contact") },
 ] as const;
 
 export const footerLinks = [
-  { label: "Projects", href: "/projects" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Expertise", href: "/expertise" },
-  { label: "About", href: "/about" },
-  { label: "Testimonials", href: "/testimonials" },
-  { label: "Contact", href: "/contact" },
-  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Projects", href: withBase("/projects") },
+  { label: "Gallery", href: withBase("/gallery") },
+  { label: "Expertise", href: withBase("/expertise") },
+  { label: "About", href: withBase("/about") },
+  { label: "Testimonials", href: withBase("/testimonials") },
+  { label: "Contact", href: withBase("/contact") },
+  { label: "Privacy Policy", href: withBase("/privacy-policy") },
 ] as const;
 
 export const projectCategories = [

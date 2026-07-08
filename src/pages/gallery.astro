@@ -3,6 +3,7 @@ import { getCollection, getEntry } from "astro:content";
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import Reveal from "../components/Reveal.tsx";
+import { withBase } from "../lib/urls";
 
 const page = await getEntry("pages", "gallery");
 const { eyebrow, heading, intro } = page?.data ?? {};
@@ -22,7 +23,7 @@ const galleryItems = projects.flatMap((project) => {
     title,
     category,
     location,
-    href: `/projects/${project.id}`,
+    href: withBase(`/projects/${project.id}`),
   }));
 });
 ---

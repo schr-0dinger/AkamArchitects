@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { navLinks } from "../lib/site";
 import type { SiteSettings } from "../lib/settings";
+import { withBase } from "../lib/urls";
 
 interface Props {
   transparent?: boolean;
@@ -22,7 +23,7 @@ const currentPath = Astro.url.pathname;
   }`}
 >
   <div class="container-page flex h-20 items-center justify-between md:h-24">
-    <a href="/" class="relative flex h-9 items-center md:h-11" aria-label={settings.name}>
+    <a href={withBase("/")} class="relative flex h-9 items-center md:h-11" aria-label={settings.name}>
       <Image
         src={settings.logoIcon}
         alt={settings.logoAlt}
@@ -55,7 +56,7 @@ const currentPath = Astro.url.pathname;
     </nav>
 
     <a
-      href="/contact"
+      href={withBase("/contact")}
       class="hidden rounded-full border border-current px-5 py-2 text-sm tracking-wide transition-colors hover:border-accent hover:text-accent md:inline-block"
     >
       Enquire
@@ -91,7 +92,7 @@ const currentPath = Astro.url.pathname;
         </a>
       ))
     }
-    <a href="/contact" class="mobile-nav-link py-1 text-accent">Enquire</a>
+    <a href={withBase("/contact")} class="mobile-nav-link py-1 text-accent">Enquire</a>
   </nav>
 </div>
 

@@ -1,5 +1,6 @@
 ---
 import { siteUrl, siteLocale } from "../lib/site";
+import { absoluteUrl } from "../lib/urls";
 
 interface Props {
   title: string;
@@ -21,7 +22,7 @@ const {
 
 const pageTitle = title === siteName ? title : `${title} | ${siteName}`;
 const canonicalURL = new URL(Astro.url.pathname, siteUrl).toString();
-const ogImage = new URL(image, siteUrl).toString();
+const ogImage = absoluteUrl(image);
 ---
 
 <title>{pageTitle}</title>

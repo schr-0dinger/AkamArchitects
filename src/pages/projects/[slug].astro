@@ -7,6 +7,7 @@ import Reveal from "../../components/Reveal.tsx";
 import Lightbox from "../../components/Lightbox.tsx";
 import { siteUrl } from "../../lib/site";
 import { breadcrumbSchema } from "../../lib/schema";
+import { absoluteUrl, withBase } from "../../lib/urls";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
@@ -61,8 +62,8 @@ const galleryImages = await Promise.all(
 
 const breadcrumb = breadcrumbSchema([
   { name: "Home", url: siteUrl },
-  { name: "Projects", url: `${siteUrl}/projects` },
-  { name: title, url: `${siteUrl}/projects/${project.id}` },
+  { name: "Projects", url: absoluteUrl("/projects") },
+  { name: title, url: absoluteUrl(`/projects/${project.id}`) },
 ]);
 ---
 
@@ -143,7 +144,7 @@ const breadcrumb = breadcrumbSchema([
   <!-- Next Project -->
   <section class="border-t border-hairline bg-ink">
     <a
-      href={`/projects/${nextProject.id}`}
+      href={withBase(`/projects/${nextProject.id}`)}
       class="group container-page flex items-center justify-between gap-6 py-16 text-paper"
     >
       <div>

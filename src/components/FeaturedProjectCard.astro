@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
+import { withBase } from "../lib/urls";
 
 interface Props {
   project: CollectionEntry<"projects">;
@@ -12,7 +13,7 @@ const { title, category, location, heroImage, heroImageAlt } = project.data;
 ---
 
 <a
-  href={`/projects/${project.id}`}
+  href={withBase(`/projects/${project.id}`)}
   class="group block"
   aria-label={`View ${title} - ${category}, ${location}`}
 >

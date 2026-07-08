@@ -1,6 +1,7 @@
 ---
 import { getEntry } from "astro:content";
 import Layout from "../layouts/Layout.astro";
+import { withBase } from "../lib/urls";
 
 const page = await getEntry("pages", "not-found");
 const { eyebrow, heading = "Page not found", intro } = page?.data ?? {};
@@ -15,13 +16,13 @@ const { eyebrow, heading = "Page not found", intro } = page?.data ?? {};
     {intro && <p class="mt-5 max-w-md leading-relaxed text-stone">{intro}</p>}
     <div class="mt-9 flex flex-wrap gap-4">
       <a
-        href="/"
+        href={withBase("/")}
         class="rounded-full bg-ink px-7 py-3 text-sm font-medium tracking-wide text-paper transition-transform hover:scale-[1.03]"
       >
         Back to Home
       </a>
       <a
-        href="/projects"
+        href={withBase("/projects")}
         class="rounded-full border border-hairline px-7 py-3 text-sm font-medium tracking-wide text-ink transition-colors hover:border-accent hover:text-accent"
       >
         View Projects

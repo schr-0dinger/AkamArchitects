@@ -5,6 +5,7 @@ import Layout from "../layouts/Layout.astro";
 import FeaturedProjectCard from "../components/FeaturedProjectCard.astro";
 import TestimonialCard from "../components/TestimonialCard.astro";
 import Reveal from "../components/Reveal.tsx";
+import { withBase } from "../lib/urls";
 
 const home = await getEntry("home", "home");
 if (!home) throw new Error("Missing content entry: src/content/home/home.md");
@@ -91,7 +92,7 @@ const showCta = Boolean(ctaHeading);
           <div class="hero-fade mt-9 flex flex-wrap gap-4" style="animation-delay:0.3s">
             {heroCtaPrimaryLabel && heroCtaPrimaryHref && (
               <a
-                href={heroCtaPrimaryHref}
+                href={withBase(heroCtaPrimaryHref)}
                 class="rounded-full bg-accent px-7 py-3 text-sm font-medium tracking-wide text-ink transition-transform hover:scale-[1.03]"
               >
                 {heroCtaPrimaryLabel}
@@ -99,7 +100,7 @@ const showCta = Boolean(ctaHeading);
             )}
             {heroCtaSecondaryLabel && heroCtaSecondaryHref && (
               <a
-                href={heroCtaSecondaryHref}
+                href={withBase(heroCtaSecondaryHref)}
                 class="rounded-full border border-paper/40 px-7 py-3 text-sm font-medium tracking-wide text-paper transition-colors hover:border-accent hover:text-accent"
               >
                 {heroCtaSecondaryLabel}
@@ -127,7 +128,7 @@ const showCta = Boolean(ctaHeading);
                 </h2>
               )}
             </div>
-            <a href="/projects" class="text-sm tracking-wide underline underline-offset-4 hover:text-accent">
+            <a href={withBase("/projects")} class="text-sm tracking-wide underline underline-offset-4 hover:text-accent">
               View all projects
             </a>
           </div>
@@ -175,7 +176,7 @@ const showCta = Boolean(ctaHeading);
           </div>
 
           <a
-            href="/expertise"
+            href={withBase("/expertise")}
             class="mt-10 inline-block text-sm tracking-wide underline underline-offset-4 hover:text-accent"
           >
             Explore all expertise
@@ -215,7 +216,7 @@ const showCta = Boolean(ctaHeading);
             <p class="mt-5 max-w-lg text-balance leading-relaxed text-stone">{aboutBody}</p>
           )}
           <a
-            href="/about"
+            href={withBase("/about")}
             class="mt-7 inline-block text-sm tracking-wide underline underline-offset-4 hover:text-accent"
           >
             Our story
@@ -250,7 +251,7 @@ const showCta = Boolean(ctaHeading);
           </div>
 
           <a
-            href="/testimonials"
+            href={withBase("/testimonials")}
             class="mt-8 inline-block text-sm tracking-wide underline underline-offset-4 hover:text-accent"
           >
             Read more testimonials
@@ -270,7 +271,7 @@ const showCta = Boolean(ctaHeading);
           </h2>
           {ctaButtonLabel && (
             <a
-              href="/contact"
+              href={withBase("/contact")}
               class="shrink-0 rounded-full bg-ink px-8 py-4 text-sm font-medium tracking-wide text-paper transition-transform hover:scale-[1.03]"
             >
               {ctaButtonLabel}
