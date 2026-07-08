@@ -183,14 +183,15 @@ const collaboratingCompanies = [
                   <span class="font-heading text-sm text-accent">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <h3 class="mt-3 font-heading text-xl tracking-tight">{item.data.title}</h3>
+                  <h3 class="mt-3 font-heading text-xl tracking-tight">
+                    <a
+                      href={withBase(`/expertise/${item.id}`)}
+                      class="transition-colors hover:text-accent"
+                    >
+                      {item.data.title}
+                    </a>
+                  </h3>
                   <p class="mt-2 text-sm leading-relaxed text-stone">{item.data.description}</p>
-                  <a
-                    href={withBase(`/expertise/${item.id}`)}
-                    class="mt-4 inline-block text-sm tracking-wide underline underline-offset-4 hover:text-accent"
-                  >
-                    Learn more
-                  </a>
                 </div>
               </Reveal>
             ))}
@@ -283,39 +284,39 @@ const collaboratingCompanies = [
   }
 
   <!-- Partners -->
-  <section class="border-t border-hairline bg-paper py-14 md:py-16">
+  <section class="border-t border-hairline bg-paper py-10 md:py-12">
     <div class="container-page">
       <Reveal client:visible>
-        <div class="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
-          <div class="max-w-sm">
+        <div class="grid gap-8 lg:grid-cols-[0.75fr_1.85fr] lg:items-start">
+          <div class="pt-1">
             <p class="text-xs uppercase tracking-[0.3em] text-accent">Partners</p>
             <h2 class="mt-3 font-heading text-2xl tracking-tight md:text-3xl">
               Built with a trusted network.
             </h2>
           </div>
 
-          <div class="grid flex-1 gap-8 md:grid-cols-[minmax(180px,0.8fr)_minmax(0,1.6fr)] md:items-center">
+          <div class="grid gap-6 md:grid-cols-[0.9fr_1.8fr]">
             <div>
-              <p class="text-xs uppercase tracking-[0.2em] text-stone">Partnering Company</p>
-              <div class="mt-4 flex min-h-24 items-center border-y border-hairline py-5">
+              <p class="min-h-4 text-xs uppercase tracking-[0.2em] text-stone">Partnering Company</p>
+              <div class="mt-3 flex h-24 items-center justify-center border-y border-hairline py-2">
                 <Image
                   src={partnerCompany.logo}
                   alt={`${partnerCompany.name} logo`}
-                  height={80}
-                  class="max-h-20 w-auto max-w-48 object-contain grayscale contrast-125"
+                  height={104}
+                  class="max-h-20 w-auto max-w-[13rem] object-contain grayscale contrast-125"
                 />
               </div>
             </div>
 
             <div>
-              <p class="text-xs uppercase tracking-[0.2em] text-stone">Collaborating Companies</p>
-              <div class="mt-4 grid min-h-24 grid-cols-2 items-center gap-x-8 gap-y-5 border-y border-hairline py-5 sm:grid-cols-3">
+              <p class="min-h-4 text-xs uppercase tracking-[0.2em] text-stone">Collaborating Companies</p>
+              <div class="mt-3 grid h-24 grid-cols-3 items-center justify-items-center gap-x-6 border-y border-hairline py-2">
                 {collaboratingCompanies.map((company) => (
                   <Image
                     src={company.logo}
                     alt={`${company.name} logo`}
-                    height={64}
-                    class="max-h-16 w-auto max-w-36 object-contain grayscale contrast-125"
+                    height={92}
+                    class="max-h-20 w-auto max-w-[10rem] object-contain grayscale contrast-125"
                   />
                 ))}
               </div>
