@@ -305,14 +305,18 @@ const collaboratingCompanies = [
           <div class="grid gap-6 md:grid-cols-[0.9fr_1.8fr]">
             <div>
               <p class="min-h-4 text-xs uppercase tracking-[0.2em] text-stone">Partnering Company</p>
-              <div class="mt-3 flex h-24 items-center justify-center border-y border-hairline py-2">
+              <a
+                href={withBase("/fourth-wall-bc")}
+                class="mt-3 flex h-24 items-center justify-center border-y border-hairline py-2 transition-opacity hover:opacity-70"
+                aria-label={`${partnerCompany.name} - building consultancy partner`}
+              >
                 <Image
                   src={partnerCompany.logo}
                   alt={`${partnerCompany.name} logo`}
                   height={104}
                   class="max-h-20 w-auto max-w-[13rem] object-contain grayscale contrast-125"
                 />
-              </div>
+              </a>
             </div>
 
             <div>

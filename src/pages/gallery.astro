@@ -61,10 +61,37 @@ for (let i = 0; i < galleryItems.length; i += ROW_SIZE) {
   </section>
 
   <section class="container-page pb-24">
-    <div class="flex flex-col gap-3 sm:gap-4">
+    <div class="grid grid-cols-2 gap-3 sm:hidden">
+      {
+        galleryItems.map((item, index) => (
+          <a
+            href={item.href}
+            class="group relative block h-44 overflow-hidden bg-ink"
+            aria-label={`${item.title} - ${item.category}, ${item.location}`}
+          >
+            <Image
+              src={item.image}
+              alt={item.alt}
+              widths={[300, 500]}
+              sizes="50vw"
+              loading={index < 4 ? "eager" : "lazy"}
+              class="h-full w-full object-cover"
+            />
+            <div class="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-ink/90 via-ink/10 to-transparent p-3">
+              <p class="font-heading text-xs leading-tight text-paper">{item.title}</p>
+              <p class="mt-0.5 text-[0.6rem] uppercase tracking-[0.1em] text-paper/70">
+                {item.category}
+              </p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="hidden flex-col gap-3 sm:flex sm:gap-4">
       {
         rows.map((row, rowIndex) => (
-          <div class="justified-row flex h-64 gap-3 sm:h-72 sm:gap-4 lg:h-80">
+          <div class="justified-row flex h-72 gap-4 lg:h-80">
             {row.map((item, itemIndex) => {
               const globalIndex = rowIndex * ROW_SIZE + itemIndex;
               return (
@@ -72,7 +99,7 @@ for (let i = 0; i < galleryItems.length; i += ROW_SIZE) {
                   href={item.href}
                   class="justified-item group relative block overflow-hidden bg-ink"
                   style={`--w: ${item.widthPercent}%`}
-                  aria-label={`${item.title} — ${item.category}, ${item.location}`}
+                  aria-label={`${item.title} - ${item.category}, ${item.location}`}
                 >
                   <Image
                     src={item.image}
@@ -85,7 +112,7 @@ for (let i = 0; i < galleryItems.length; i += ROW_SIZE) {
                   <div class="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-ink/90 via-ink/10 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <p class="font-heading text-sm leading-tight text-paper">{item.title}</p>
                     <p class="mt-0.5 text-[0.65rem] uppercase tracking-[0.15em] text-paper/70">
-                      {item.category} — {item.location}
+                      {item.category} - {item.location}
                     </p>
                   </div>
                 </a>
