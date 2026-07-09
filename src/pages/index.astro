@@ -44,7 +44,9 @@ const featured = allProjects
   .sort((a, b) => a.data.featuredOrder - b.data.featuredOrder)
   .slice(0, 6);
 
-const expertise = (await getCollection("expertise")).sort((a, b) => a.data.order - b.data.order);
+const expertise = (await getCollection("expertise"))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 6);
 const testimonials = (await getCollection("testimonials"))
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 2);
@@ -197,12 +199,17 @@ const collaboratingCompanies = [
             ))}
           </div>
 
-          <a
-            href={withBase("/expertise")}
-            class="mt-10 inline-block text-sm tracking-wide underline underline-offset-4 hover:text-accent"
-          >
-            Explore all expertise
-          </a>
+          <div class="mt-14 flex justify-center">
+            <a
+              href={withBase("/expertise")}
+              class="group inline-flex items-center gap-3 rounded-full bg-ink px-9 py-4 text-sm font-medium tracking-wide text-paper transition-all duration-300 hover:scale-[1.03] hover:bg-accent hover:text-ink"
+            >
+              Explore All Expertise
+              <span class="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
+                &#8594;
+              </span>
+            </a>
+          </div>
         </div>
       </section>
     )

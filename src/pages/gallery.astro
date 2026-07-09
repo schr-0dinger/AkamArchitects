@@ -26,6 +26,20 @@ const galleryItems = projects.flatMap((project) => {
     href: withBase(`/projects/${project.id}`),
   }));
 });
+
+// Justified-row layout: every row is the same height (set in CSS below); each
+// image's width within its row is proportional to its own aspect ratio, so
+// the only variability is width, and every row already sums to exactly 100%.
+const ROW_SIZE = 4;
+const rows = [];
+for (let i = 0; i < galleryItems.length; i += ROW_SIZE) {
+  const rowItems = galleryItems.slice(i, i + ROW_SIZE);
+  const ratios = rowItems.map((item) => item.image.width / item.image.height);
+  const ratioSum = ratios.reduce((sum, ratio) => sum + ratio, 0);
+  rows.push(
+    rowItems.map((item, i2) => ({ ...item, widthPercent: (ratios[i2] / ratioSum) * 100 })),
+  );
+}
 ---
 
 <Layout
@@ -47,31 +61,65 @@ const galleryItems = projects.flatMap((project) => {
   </section>
 
   <section class="container-page pb-24">
-    <div class="columns-1 gap-4 sm:columns-2 lg:columns-3">
+    <div class="flex flex-col gap-3 sm:gap-4">
       {
-        galleryItems.map((item, index) => (
-          <a
-            href={item.href}
-            class="group relative mb-4 block break-inside-avoid overflow-hidden bg-mist"
-            aria-label={`${item.title} - ${item.category}, ${item.location}`}
-          >
-            <Image
-              src={item.image}
-              alt={item.alt}
-              widths={[400, 700, 1000]}
-              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-              loading={index < 6 ? "eager" : "lazy"}
-              class="w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-            />
-            <div class="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-ink/80 via-ink/0 to-ink/0 p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              <p class="font-heading text-base text-paper">{item.title}</p>
-              <p class="text-xs uppercase tracking-[0.15em] text-paper/70">
-                {item.category} - {item.location}
-              </p>
-            </div>
-          </a>
+        rows.map((row, rowIndex) => (
+          <div class="justified-row flex h-64 gap-3 sm:h-72 sm:gap-4 lg:h-80">
+            {row.map((item, itemIndex) => {
+              const globalIndex = rowIndex * ROW_SIZE + itemIndex;
+              return (
+                <a
+                  href={item.href}
+                  class="justified-item group relative block overflow-hidden bg-ink"
+                  style={`--w: ${item.widthPercent}%`}
+                  aria-label={`${item.title} — ${item.category}, ${item.location}`}
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.alt}
+                    widths={[400, 700, 1000]}
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    loading={globalIndex < 6 ? "eager" : "lazy"}
+                    class="h-full w-full object-cover"
+                  />
+                  <div class="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-ink/90 via-ink/10 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <p class="font-heading text-sm leading-tight text-paper">{item.title}</p>
+                    <p class="mt-0.5 text-[0.65rem] uppercase tracking-[0.15em] text-paper/70">
+                      {item.category} — {item.location}
+                    </p>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
         ))
       }
     </div>
   </section>
 </Layout>
+
+<style>
+  /* Justified gallery rows: every row is a fixed, uniform height (set via
+     Tailwind h-* classes above) - only image widths vary, driven by each
+     image's own aspect ratio via the --w custom property. Widths always sum
+     to exactly 100% of the row, so every row stays perfectly contained.
+     Hovering one image grows it and shrinks its row-siblings to match,
+     without ever overflowing - flex-shrink guarantees the row still sums
+     to exactly 100%, it's just no longer split proportionally by --w. */
+  .justified-item {
+    flex: 0 1 var(--w);
+    transition: flex-basis 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .justified-row:has(.justified-item:hover) .justified-item:hover {
+    flex-basis: calc(var(--w) * 2.4);
+    flex-shrink: 0;
+  }
+
+  @media (hover: none) {
+    .justified-row:has(.justified-item:hover) .justified-item:hover {
+      flex-basis: var(--w);
+      flex-shrink: 1;
+    }
+  }
+</style>

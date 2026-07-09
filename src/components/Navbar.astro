@@ -24,27 +24,33 @@ const currentPath = Astro.url.pathname;
       : "border-hairline bg-paper text-ink"
   }`}
 >
-  <div class="container-page flex h-20 items-center justify-between md:h-24">
+  <div class="container-page flex h-24 items-center justify-between md:h-32">
     <a
       href={withBase("/")}
-      class={`site-logo-link relative flex items-center transition-[height] duration-300 ${
-        largeHomeLogo ? "h-14 md:h-20" : "h-9 md:h-11"
+      class={`site-logo-link relative flex items-center gap-3 transition-[height] duration-300 ${
+        largeHomeLogo ? "h-20 md:h-28" : "h-8 md:h-10"
       }`}
       aria-label={settings.name}
     >
-      <Image
-        src={settings.logoIcon}
-        alt={settings.logoAlt}
-        height={44}
-        class={`logo-light h-full w-auto transition-opacity duration-300 ${transparent ? "opacity-0" : ""}`}
-      />
-      <Image
-        src={settings.logoIconOnDark}
-        alt=""
-        aria-hidden="true"
-        height={44}
-        class={`logo-dark absolute inset-0 h-full w-auto transition-opacity duration-300 ${transparent ? "" : "opacity-0"}`}
-      />
+      <span class="logo-mark relative flex h-full shrink-0 items-center">
+        <Image
+          src={settings.logoIcon}
+          alt={settings.logoAlt}
+          height={240}
+          class={`logo-light h-full w-auto transition-opacity duration-300 ${transparent ? "opacity-0" : ""}`}
+        />
+        <Image
+          src={settings.logoIconOnDark}
+          alt=""
+          aria-hidden="true"
+          height={240}
+          class={`logo-dark absolute inset-0 h-full w-auto transition-opacity duration-300 ${transparent ? "" : "opacity-0"}`}
+        />
+      </span>
+      <span class="hidden flex-col leading-none sm:flex">
+        <span class="font-heading text-base font-semibold tracking-tight md:text-lg">AKAM</span>
+        <span class="text-[0.6rem] uppercase tracking-[0.25em] opacity-70">Architects</span>
+      </span>
     </a>
 
     <nav class="hidden items-center gap-9 text-sm tracking-wide md:flex" aria-label="Primary">
@@ -62,13 +68,6 @@ const currentPath = Astro.url.pathname;
         ))
       }
     </nav>
-
-    <a
-      href={withBase("/contact")}
-      class="hidden rounded-full border border-current px-5 py-2 text-sm tracking-wide transition-colors hover:border-accent hover:text-accent md:inline-block"
-    >
-      Enquire
-    </a>
 
     <button
       id="menu-toggle"
@@ -100,7 +99,6 @@ const currentPath = Astro.url.pathname;
         </a>
       ))
     }
-    <a href={withBase("/contact")} class="mobile-nav-link py-1 text-accent">Enquire</a>
   </nav>
 </div>
 
@@ -118,10 +116,10 @@ const currentPath = Astro.url.pathname;
   function setSolid(solid: boolean) {
     if (!nav) return;
     if (usesLargeLogo) {
-      logoLink?.classList.toggle("h-14", !solid);
-      logoLink?.classList.toggle("md:h-20", !solid);
-      logoLink?.classList.toggle("h-9", solid);
-      logoLink?.classList.toggle("md:h-11", solid);
+      logoLink?.classList.toggle("h-20", !solid);
+      logoLink?.classList.toggle("md:h-28", !solid);
+      logoLink?.classList.toggle("h-8", solid);
+      logoLink?.classList.toggle("md:h-10", solid);
     }
     if (solid) {
       nav.classList.remove("border-transparent", "bg-transparent", "text-paper");
