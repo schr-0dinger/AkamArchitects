@@ -42,4 +42,13 @@ stats:
   - value: 3
     suffix: ""
     label: "Design awards"
+founders:
+  - name: "Karthik Dileep"
+    role: "Co-Founder & Principal Architect"
+    bio: ""
+    photo: "../../assets/about/karthik-portrait.png"
+    photoAlt: "Portrait of Karthik Dileep, Co-Founder & Principal Architect at AKAM Architects"
+  - name: "Anakha"
+    role: "Co-Founder & Lighting Design Lead"
+    bio: ""
 ---

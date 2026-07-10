@@ -131,6 +131,18 @@ const about = defineCollection({
           }),
         )
         .default([]),
+      // Photo is optional — a founder without one yet shows a placeholder card.
+      founders: z
+        .array(
+          z.object({
+            name: z.string(),
+            role: z.string().optional(),
+            bio: z.string().optional(),
+            photo: image().optional(),
+            photoAlt: z.string().optional(),
+          }),
+        )
+        .default([]),
     }),
 });
 
