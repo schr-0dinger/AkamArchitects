@@ -32,6 +32,15 @@ const storyParagraphs = (storyBody ?? "")
 
 const settings = await getSiteSettings();
 const yearsInPractice = new Date().getFullYear() - settings.founded;
+
+const visibleStats = stats.filter((stat) => stat.value !== 0);
+const statsCount = 1 + visibleStats.length; // +1 for the hardcoded "Years in practice"
+const statsGridClass =
+  statsCount >= 4
+    ? "grid-cols-2 md:grid-cols-4"
+    : statsCount === 3
+      ? "grid-cols-3"
+      : "grid-cols-2";
 ---
 
 <Layout
@@ -166,7 +175,7 @@ const yearsInPractice = new Date().getFullYear() - settings.founded;
 
   <!-- Stats -->
   <section class="container-page py-16 md:py-20">
-    <div class="grid grid-cols-2 gap-10 md:grid-cols-4">
+    <div class={`grid gap-10 ${statsGridClass}`}>
       <Reveal client:visible className="text-center md:text-left">
         <p class="font-heading text-4xl tracking-tight text-ink md:text-5xl">
           <AnimatedCounter client:visible value={yearsInPractice} suffix="+" />
@@ -174,16 +183,14 @@ const yearsInPractice = new Date().getFullYear() - settings.founded;
         <p class="mt-2 text-sm uppercase tracking-[0.15em] text-stone">Years in practice</p>
       </Reveal>
       {
-        stats
-          .filter((stat) => stat.value !== 0)
-          .map((stat, index) => (
-            <Reveal client:visible delay={(index + 1) * 0.06} className="text-center md:text-left">
-              <p class="font-heading text-4xl tracking-tight text-ink md:text-5xl">
-                <AnimatedCounter client:visible value={stat.value} suffix={stat.suffix} />
-              </p>
-              <p class="mt-2 text-sm uppercase tracking-[0.15em] text-stone">{stat.label}</p>
-            </Reveal>
-          ))
+        visibleStats.map((stat, index) => (
+          <Reveal client:visible delay={(index + 1) * 0.06} className="text-center md:text-left">
+            <p class="font-heading text-4xl tracking-tight text-ink md:text-5xl">
+              <AnimatedCounter client:visible value={stat.value} suffix={stat.suffix} />
+            </p>
+            <p class="mt-2 text-sm uppercase tracking-[0.15em] text-stone">{stat.label}</p>
+          </Reveal>
+        ))
       }
     </div>
   </section>
