@@ -21,10 +21,11 @@ export default defineConfig({
       entrypoint: 'astro/assets/services/sharp',
       config: {
         // Sharp's default AVIF encoder effort (4) is tuned for speed, not size,
-        // and can produce larger files than WebP at the same `quality`. Raising
-        // it makes AVIF actually deliver on its compression advantage — this
-        // only costs extra time at build, never at runtime.
-        avif: { effort: 9 },
+        // and can produce larger files than WebP at the same `quality`. Effort 6
+        // gets nearly all of the size benefit of 9 (within ~1.5% on test images)
+        // at roughly a third of the encode time — effort 9 pushed a 347-image
+        // build past Netlify's time limit.
+        avif: { effort: 6 },
       },
     },
   },
