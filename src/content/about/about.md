@@ -28,7 +28,9 @@ mission: To design and deliver climate-responsive architecture that is
 timeline:
   - year: "2019"
     title: Akam Begins
-    body: Karthik and Anakha found AKAM Architects in Areekode, Kerala.
+    body: Founded by Karthik Dileep and Anakha in Areekode, Kerala, AKAM Architects
+      begins its journey with a commitment to thoughtful, climate-responsive
+      design
   - year: 2021-2022
     title: Expanding Design Expertise
     body: Product design and architectural lighting become an integral part of every
