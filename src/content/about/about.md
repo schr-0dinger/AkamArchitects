@@ -31,16 +31,12 @@ timeline:
     body: Karthik and Anakha found AKAM Architects in Areekode, Kerala.
   - year: 2021-2022
     title: Expanding Design Expertise
-    body: AKAM broadens its multidisciplinary approach by integrating product design
-      and architectural lighting design into its design process. Every project
-      is enhanced through bespoke details, thoughtful lighting, and a cohesive
-      design language that elevates functionality, atmosphere, and the overall
-      user experience.
+    body: Product design and architectural lighting become an integral part of every
+      AKAM project, adding thoughtful detail, functionality, and atmosphere.
   - year: "2025"
     title: Construction Arm Launches
-    body: AKAM establishes Fourth Wall BC as its dedicated construction division,
-      delivering seamless coordination between design, engineering, and on-site
-      execution to bring every vision to life.
+    body: AKAM launches Fourth Wall BC, expanding its services to include integrated
+      construction and project delivery.
   - year: "2026"
     title: A New Chapter
     body: AKAM Architects relaunches its studio, marking a new phase of growth,
