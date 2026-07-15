@@ -1,37 +1,39 @@
 ---
-name: "AKAM Architects & Construction"
-shortName: "AKAM"
-tagline: "Architecture that breathes."
-description: "AKAM Architects & Construction designs sustainable, design-led residential, commercial, and institutional projects from their studio in Areekode, Kerala."
+name: AKAM Architects & Construction
+shortName: AKAM
+tagline: Architecture that breathes.
+description: AKAM Architects & Construction designs sustainable, design-led
+  residential, commercial, and institutional projects from their studio in
+  Areekode, Kerala.
 founded: 2019
-logoIcon: "../../assets/logo/akam-icon.png"
-logoIconOnDark: "../../assets/logo/akam-icon-white.png"
-logoFull: "../../assets/logo/akam-logo.png"
-logoAlt: "AKAM Architects logo"
+logoIcon: ../../assets/logo/akam-icon.png
+logoIconOnDark: ../../assets/logo/akam-icon-white.png
+logoFull: ../../assets/logo/akam-logo.png
+logoAlt: AKAM Architects logo
 phones:
-  - number: "+91 94976 42135"
-    href: "tel:+919497642135"
-  - number: "+91 62827 42135"
-    href: "tel:+916282742135"
+  - number: +91 94976 42135
+    href: tel:+919497642135
+  - number: +91 62827 42135
+    href: tel:+916282742135
 whatsapp: "919497642135"
-email: "contact@akamarchitects.com"
+email: contact@akamarchitects.com
 addresses:
-  - label: "Malappuram Studio"
-    line1: "4/163/C, Ganga Building, Near Federal Bank"
-    line2: "Vazhakkad Road, Areekode"
-    city: "Malappuram"
-    state: "Kerala"
+  - label: Malappuram Studio
+    line1: 4/163/C, Ganga Building
+    line2: Near Federal Bank, Vazhakkad Road
+    city: Areekode, Malappuram
+    state: Kerala
     postalCode: "673639"
-    country: "India"
-  - label: "Thiruvananthapuram Office"
-    line1: "First Floor, KPRA 53"
-    line2: "Karyavattom P.O"
-    city: "Thiruvananthapuram"
-    state: "Kerala"
+    country: India
+  - label: Thiruvananthapuram Office
+    line1: First Floor, KPRA 53
+    line2: Karyavattom P.O
+    city: Thiruvananthapuram
+    state: Kerala
     postalCode: "695581"
-    country: "India"
-mapQuery: "Ganga Building, Vazhakkad Road, Areekode, Malappuram, Kerala 673639"
-hours: "Monday to Friday (9AM - 5PM), By appointment only"
-socialFacebook: "https://facebook.com/103141377858879"
-socialInstagram: "https://www.instagram.com/akamarchitects/"
+    country: India
+mapQuery: Ganga Building, Vazhakkad Road, Areekode, Malappuram, Kerala 673639
+hours: Monday to Friday (9AM - 5PM), By appointment only
+socialFacebook: https://facebook.com/103141377858879
+socialInstagram: https://www.instagram.com/akamarchitects/
 ---
