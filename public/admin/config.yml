@@ -1,0 +1,228 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Netlify Identity + Git Gateway handles login and commits on the client's
+# behalf - no GitHub account needed for the client, no separate OAuth server.
+# Enable both "Identity" and "Git Gateway" in the Netlify dashboard for this
+# site before the /admin login will work.
+
+publish_mode: simple
+media_folder: "src/assets/uploads"
+public_folder: "/src/assets/uploads"
+
+collections:
+  - name: "projects"
+    label: "Projects"
+    folder: "src/content/projects"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{title}} — {{category}} ({{featuredOrder}})"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options: ["Residential", "Commercial", "Interior", "Hospitality", "Institutional"]
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "Year", name: "year", widget: "number", value_type: "int" }
+      - { label: "Area", name: "area", widget: "string", required: false, hint: "e.g. 6,200 sq.ft" }
+      - label: "Services"
+        name: "services"
+        widget: "list"
+        field: { label: "Service", name: "service", widget: "string" }
+      - { label: "Hero Image", name: "heroImage", widget: "image" }
+      - { label: "Hero Image Alt Text", name: "heroImageAlt", widget: "string", hint: "Describe the image for screen readers and SEO" }
+      - label: "Gallery"
+        name: "gallery"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Image", name: "image", widget: "image" }
+          - { label: "Alt Text", name: "alt", widget: "string" }
+      - { label: "Excerpt", name: "excerpt", widget: "text", hint: "One or two sentences shown on cards" }
+      - { label: "Full Description", name: "description", widget: "text", hint: "Use a blank line between paragraphs" }
+      - { label: "Featured (show on Projects page)", name: "featured", widget: "boolean", default: false }
+      - { label: "Featured Order", name: "featuredOrder", widget: "number", value_type: "int", default: 999, hint: "Lower numbers appear first" }
+
+  - name: "expertise"
+    label: "Expertise"
+    folder: "src/content/expertise"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    identifier_field: title
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Short Description", name: "description", widget: "text" }
+      - { label: "Detail Page Intro", name: "detailIntro", widget: "text" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Image Alt Text", name: "imageAlt", widget: "string" }
+      - label: "Gallery"
+        name: "gallery"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Image", name: "image", widget: "image" }
+          - { label: "Alt Text", name: "alt", widget: "string" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int", default: 999, hint: "Lower numbers appear first" }
+
+  - name: "testimonials"
+    label: "Testimonials"
+    folder: "src/content/testimonials"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    identifier_field: name
+    fields:
+      - { label: "Quote", name: "quote", widget: "text" }
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Role / Company", name: "role", widget: "string" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int", default: 999, hint: "Lower numbers appear first" }
+
+  - name: "about"
+    label: "About Page"
+    files:
+      - name: "about"
+        label: "About Page Content"
+        file: "src/content/about/about.md"
+        fields:
+          - { label: "Eyebrow", name: "eyebrow", widget: "string", required: false }
+          - { label: "Heading", name: "heading", widget: "string" }
+          - { label: "Hero Image", name: "heroImage", widget: "image" }
+          - { label: "Hero Image Alt Text", name: "heroImageAlt", widget: "string" }
+          - { label: "Story Eyebrow", name: "storyEyebrow", widget: "string", required: false }
+          - { label: "Story Heading", name: "storyHeading", widget: "string", required: false }
+          - { label: "Story Body", name: "storyBody", widget: "text", required: false }
+          - { label: "Vision", name: "vision", widget: "text", required: false }
+          - { label: "Mission", name: "mission", widget: "text", required: false }
+          - label: "Timeline"
+            name: "timeline"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Year", name: "year", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Body", name: "body", widget: "text" }
+          - label: "Stats"
+            name: "stats"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Value", name: "value", widget: "number" }
+              - { label: "Suffix", name: "suffix", widget: "string", default: "", hint: "e.g. + or %" }
+              - { label: "Label", name: "label", widget: "string" }
+          - label: "Founders"
+            name: "founders"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Role", name: "role", widget: "string", required: false }
+              - { label: "Bio", name: "bio", widget: "text", required: false }
+              - { label: "Photo", name: "photo", widget: "image", required: false }
+              - { label: "Photo Alt Text", name: "photoAlt", widget: "string", required: false }
+
+  - name: "home"
+    label: "Home Page"
+    files:
+      - name: "home"
+        label: "Home Page Content"
+        file: "src/content/home/home.md"
+        fields:
+          - { label: "Hero Eyebrow", name: "heroEyebrow", widget: "string", required: false }
+          - { label: "Hero Heading", name: "heroHeading", widget: "string" }
+          - { label: "Hero Subheading", name: "heroSubheading", widget: "string", required: false }
+          - { label: "Hero Image", name: "heroImage", widget: "image" }
+          - { label: "Hero Image Alt Text", name: "heroImageAlt", widget: "string" }
+          - { label: "Hero Primary Button Label", name: "heroCtaPrimaryLabel", widget: "string", required: false }
+          - { label: "Hero Primary Button Link", name: "heroCtaPrimaryHref", widget: "string", required: false }
+          - { label: "Hero Secondary Button Label", name: "heroCtaSecondaryLabel", widget: "string", required: false }
+          - { label: "Hero Secondary Button Link", name: "heroCtaSecondaryHref", widget: "string", required: false }
+          - { label: "Featured Projects Eyebrow", name: "featuredEyebrow", widget: "string", required: false }
+          - { label: "Featured Projects Heading", name: "featuredHeading", widget: "string", required: false }
+          - { label: "Expertise Eyebrow", name: "expertiseEyebrow", widget: "string", required: false }
+          - { label: "Expertise Heading", name: "expertiseHeading", widget: "string", required: false }
+          - { label: "About Preview Eyebrow", name: "aboutEyebrow", widget: "string", required: false }
+          - { label: "About Preview Heading", name: "aboutHeading", widget: "string", required: false }
+          - { label: "About Preview Body", name: "aboutBody", widget: "text", required: false }
+          - { label: "About Preview Image", name: "aboutImage", widget: "image", required: false }
+          - { label: "About Preview Image Alt Text", name: "aboutImageAlt", widget: "string", required: false }
+          - { label: "Testimonials Eyebrow", name: "testimonialsEyebrow", widget: "string", required: false }
+          - { label: "Testimonials Heading", name: "testimonialsHeading", widget: "string", required: false }
+          - { label: "Closing CTA Heading", name: "ctaHeading", widget: "string", required: false }
+          - { label: "Closing CTA Button Label", name: "ctaButtonLabel", widget: "string", required: false }
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "site"
+        label: "Site Settings"
+        file: "src/content/settings/site.md"
+        fields:
+          - { label: "Site Name", name: "name", widget: "string" }
+          - { label: "Short Name", name: "shortName", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Meta Description", name: "description", widget: "text" }
+          - { label: "Founded Year", name: "founded", widget: "number", value_type: "int" }
+          - { label: "Logo Icon", name: "logoIcon", widget: "image" }
+          - { label: "Logo Icon (for dark navbar)", name: "logoIconOnDark", widget: "image" }
+          - { label: "Full Logo Lockup", name: "logoFull", widget: "image" }
+          - { label: "Logo Alt Text", name: "logoAlt", widget: "string" }
+          - label: "Phone Numbers"
+            name: "phones"
+            widget: "list"
+            fields:
+              - { label: "Display Number", name: "number", widget: "string", hint: "e.g. +91 98765 43210" }
+              - { label: "Link (tel:)", name: "href", widget: "string", hint: "e.g. tel:+919876543210" }
+          - { label: "WhatsApp Number", name: "whatsapp", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - label: "Office Addresses"
+            name: "addresses"
+            widget: "list"
+            fields:
+              - { label: "Label", name: "label", widget: "string", required: false, hint: "e.g. Studio, Site Office" }
+              - { label: "Address Line 1", name: "line1", widget: "string" }
+              - { label: "Address Line 2", name: "line2", widget: "string", required: false }
+              - { label: "City", name: "city", widget: "string" }
+              - { label: "State", name: "state", widget: "string" }
+              - { label: "Postal Code", name: "postalCode", widget: "string" }
+              - { label: "Country", name: "country", widget: "string" }
+          - { label: "Google Maps Search Query", name: "mapQuery", widget: "string", hint: "Usually the full address of the primary office" }
+          - { label: "Office Hours", name: "hours", widget: "string" }
+          - { label: "Facebook URL", name: "socialFacebook", widget: "string", required: false }
+          - { label: "Instagram URL", name: "socialInstagram", widget: "string", required: false }
+          - { label: "LinkedIn URL", name: "socialLinkedin", widget: "string", required: false }
+
+  - name: "pages"
+    label: "Simple Pages"
+    folder: "src/content/pages"
+    create: false
+    delete: false
+    identifier_field: heading
+    fields:
+      - { label: "Eyebrow", name: "eyebrow", widget: "string", required: false }
+      - { label: "Heading", name: "heading", widget: "string" }
+      - { label: "Intro", name: "intro", widget: "text", required: false }
+      - { label: "Hero Image", name: "heroImage", widget: "image", required: false }
+      - { label: "Hero Image Alt Text", name: "heroImageAlt", widget: "string", required: false }
+      - label: "Gallery"
+        name: "gallery"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Image", name: "image", widget: "image" }
+          - { label: "Alt Text", name: "alt", widget: "string" }
+
+  - name: "legal"
+    label: "Legal"
+    files:
+      - name: "privacy-policy"
+        label: "Privacy Policy"
+        file: "src/content/legal/privacy-policy.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Last Updated", name: "lastUpdated", widget: "string", hint: "e.g. July 2026" }
+          - { label: "Body", name: "body", widget: "markdown" }
