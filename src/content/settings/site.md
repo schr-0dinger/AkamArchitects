@@ -26,8 +26,8 @@ addresses:
     postalCode: "673639"
     country: India
   - label: Thiruvananthapuram Office
-    line1: First Floor, KPRA 53
-    line2: Karyavattom P.O
+    line1: First Floor, KPRA 53, Karyavattom P.O.
+    line2: ""
     city: Thiruvananthapuram
     state: Kerala
     postalCode: "695581"
