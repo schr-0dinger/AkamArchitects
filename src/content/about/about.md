@@ -5,57 +5,55 @@ heroImage: ../../assets/about/hero.jpg
 heroImageAlt: Glass facade reflections (placeholder photo)
 storyEyebrow: Our Story
 storyHeading: Founded on a simple conviction.
-storyBody: >
-  AKAM Architects & Construction was founded in 2019 by Karthik Dileep and
-  Anakha, who met
-
-  through a shared interest in buildings that respond to climate and site rather than trend.
-
-  Karthik studied architecture at CET before completing an MSc in Design at Nottingham Trent
-
-  University, with a background spanning product development, industrial design, and
-
-  sustainable architecture across residential, commercial, and institutional work. Anakha,
-
-  also a CET graduate, holds an MA in Lighting Design from Edinburgh Napier University and
-
-  brings that specialism into every project the studio takes on.
+storyBody: >-
+  Founded in 2019, AKAM Architects is led by Karthik Dileep and Anakha, whose
+  shared vision is to create architecture that responds to climate, context, and
+  the way people live. Their approach prioritizes thoughtful design over passing
+  trends, resulting in spaces that are timeless, sustainable, and deeply
+  connected to their surroundings.
 
 
-  Together, they run AKAM as a single team across architecture, interiors, lighting, and
+  Karthik graduated in Architecture from the College of Engineering Trivandrum (CET) and later earned an MSc in Design from Nottingham Trent University. His multidisciplinary background spans architecture, product design, industrial design, and sustainable design across residential, commercial, and institutional projects.
 
-  construction - so a decision made at the concept stage survives all the way to the site,
 
-  and no project is handed off between disciplines without full context.
-vision: To be a studio known for buildings that are climatically honest and
-  genuinely enjoyable to live and work in - sustainable by design, not as an
-  afterthought.
-mission: To design and deliver thoughtful, high-performance spaces with
-  precision and responsibility, working closely with every client from first
-  sketch to final handover.
+  Anakha, also a graduate of CET, holds an MA in Lighting Design from Edinburgh Napier University. Her expertise in daylighting and architectural lighting informs every project, enhancing spatial quality, atmosphere, and user experience.
+
+
+  Together, they lead AKAM as an integrated design practice, bringing architecture, interiors, lighting design, engineering, and project delivery together under one studio. This collaborative approach ensures that every project—from the earliest concept to its final realization—retains its original design intent while responding thoughtfully to its environment and the people who inhabit it.
+vision: To create timeless, climate-responsive architecture that enriches lives,
+  respects the environment, and inspires a more sustainable future.
+mission: To design and deliver climate-responsive architecture that is
+  thoughtful, sustainable, and enduring—working closely with our clients to
+  create spaces that enrich everyday life through every stage of the journey.
 timeline:
   - year: "2019"
-    title: Studio Founded
-    body: Karthik and Anakha found AKAM Architects & Construction in Areekode,
-      Kerala.
+    title: Akam Begins
+    body: Karthik and Anakha found AKAM Architects in Areekode, Kerala.
   - year: "2021"
-    title: Lighting Design Integrated
-    body: Architectural lighting becomes a core part of every AKAM project, not an
-      add-on.
-  - year: "2023"
-    title: Construction Arm Launches
-    body: In-house construction supervision begins, closing the gap between design
-      and site.
+    title: Product Design Integrated
+    body: Product design becomes a defining part of the AKAM design process,
+      integrating bespoke details seamlessly into every project.
+  - year: "2022"
+    title: A New Design Dimension
+    body: AKAM expands its multidisciplinary approach by integrating architectural
+      lighting design into every project, enhancing functionality, atmosphere,
+      and well-being.
   - year: "2025"
-    title: 30 Flagship Projects
-    body: AKAM's portfolio crosses 30 flagship works across five typologies.
+    title: Construction Arm Launches
+    body: AKAM establishes Fourth Wall BC as its dedicated construction division,
+      delivering seamless coordination between design, engineering, and on-site
+      execution to bring every vision to life.
+  - year: "2026"
+    title: A New Chapter
+    body: AKAM Architects relaunches its studio, marking a new phase of growth,
+      innovation, and integrated architectural practice.
 stats:
-  - value: 60
-    suffix: +
-    label: Projects delivered
   - value: 30
     suffix: +
-    label: Flagship works
+    label: Projects delivered
+  - value: 100
+    suffix: +
+    label: Projects Consulted
   - value: 0
     suffix: +
     label: Design awards
