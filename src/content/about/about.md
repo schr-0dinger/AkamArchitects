@@ -29,15 +29,13 @@ timeline:
   - year: "2019"
     title: Akam Begins
     body: Karthik and Anakha found AKAM Architects in Areekode, Kerala.
-  - year: "2021"
-    title: Product Design Integrated
-    body: Product design becomes a defining part of the AKAM design process,
-      integrating bespoke details seamlessly into every project.
-  - year: "2022"
-    title: A New Design Dimension
-    body: AKAM expands its multidisciplinary approach by integrating architectural
-      lighting design into every project, enhancing functionality, atmosphere,
-      and well-being.
+  - year: 2021-2022
+    title: Expanding Design Expertise
+    body: AKAM broadens its multidisciplinary approach by integrating product design
+      and architectural lighting design into its design process. Every project
+      is enhanced through bespoke details, thoughtful lighting, and a cohesive
+      design language that elevates functionality, atmosphere, and the overall
+      user experience.
   - year: "2025"
     title: Construction Arm Launches
     body: AKAM establishes Fourth Wall BC as its dedicated construction division,
