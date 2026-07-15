@@ -112,7 +112,7 @@ collections:
             required: false
             fields:
               - { label: "Value", name: "value", widget: "number" }
-              - { label: "Suffix", name: "suffix", widget: "string", default: "", hint: "e.g. + or %" }
+              - { label: "Suffix", name: "suffix", widget: "string", default: "", required: false, hint: "e.g. + or %" }
               - { label: "Label", name: "label", widget: "string" }
           - label: "Founders"
             name: "founders"
