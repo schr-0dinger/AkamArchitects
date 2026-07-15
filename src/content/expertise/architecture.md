@@ -2,6 +2,15 @@
 title: "Architecture & Building Design"
 description: "Concept through construction drawings for residential, commercial, and institutional buildings, with sustainability considered from the first sketch."
 detailIntro: "Architecture at AKAM begins with climate, context, and the everyday rituals of the people who will use the space."
+image: "../../assets/expertise/architecture/card.jpg"
+imageAlt: "Architectural floor plan blueprint on a desk"
+gallery:
+  - image: "../../assets/expertise/architecture/gallery-1.jpg"
+    alt: "Person reviewing a blueprint on a laptop"
+  - image: "../../assets/expertise/architecture/gallery-2.jpg"
+    alt: "Close-up of drawing and drafting tools"
+  - image: "../../assets/expertise/architecture/gallery-3.jpg"
+    alt: "Couple reviewing a house blueprint together"
 order: 1
 ---
 

@@ -49,16 +49,33 @@ const settings = defineCollection({
       logoIconOnDark: image(),
       logoFull: image(),
       logoAlt: z.string(),
-      phone: z.string(),
-      phoneHref: z.string(),
+      // One or more phone numbers - the first is used as the primary contact
+      // number in structured data (JSON-LD); all are listed in the footer.
+      phones: z
+        .array(
+          z.object({
+            number: z.string(),
+            href: z.string(),
+          }),
+        )
+        .min(1),
       whatsapp: z.string(),
       email: z.string(),
-      addressLine1: z.string(),
-      addressLine2: z.string().optional(),
-      addressCity: z.string(),
-      addressState: z.string(),
-      addressPostalCode: z.string(),
-      addressCountry: z.string(),
+      // One or more office addresses - the first is used for the Contact
+      // page's map embed; all are listed in the footer and Contact page.
+      addresses: z
+        .array(
+          z.object({
+            label: z.string().optional(),
+            line1: z.string(),
+            line2: z.string().optional(),
+            city: z.string(),
+            state: z.string(),
+            postalCode: z.string(),
+            country: z.string(),
+          }),
+        )
+        .min(1),
       mapQuery: z.string(),
       hours: z.string(),
       socialFacebook: z.string().optional(),
@@ -131,7 +148,7 @@ const about = defineCollection({
           }),
         )
         .default([]),
-      // Photo is optional — a founder without one yet shows a placeholder card.
+      // Photo is optional - a founder without one yet shows a placeholder card.
       founders: z
         .array(
           z.object({
@@ -149,12 +166,23 @@ const about = defineCollection({
 // Expertise (formerly "Services") offerings - one file per item.
 const expertise = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/expertise" }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    detailIntro: z.string(),
-    order: z.number().int().default(999),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      detailIntro: z.string(),
+      image: image(),
+      imageAlt: z.string(),
+      gallery: z
+        .array(
+          z.object({
+            image: image(),
+            alt: z.string(),
+          }),
+        )
+        .default([]),
+      order: z.number().int().default(999),
+    }),
 });
 
 const testimonials = defineCollection({
@@ -168,13 +196,25 @@ const testimonials = defineCollection({
 });
 
 // Short eyebrow/heading/intro copy for simpler pages - one file per page.
+// Images are optional and only used by pages that opt in (e.g. fourth-wall-bc).
 const pages = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/pages" }),
-  schema: z.object({
-    eyebrow: z.string().optional(),
-    heading: z.string(),
-    intro: z.string().optional(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      eyebrow: z.string().optional(),
+      heading: z.string(),
+      intro: z.string().optional(),
+      heroImage: image().optional(),
+      heroImageAlt: z.string().optional(),
+      gallery: z
+        .array(
+          z.object({
+            image: image(),
+            alt: z.string(),
+          }),
+        )
+        .default([]),
+    }),
 });
 
 // Privacy Policy - full legal body as markdown (src/content/legal/privacy-policy.md).

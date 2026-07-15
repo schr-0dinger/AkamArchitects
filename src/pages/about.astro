@@ -1,4 +1,4 @@
----
+﻿---
 import { Image } from "astro:assets";
 import { getEntry } from "astro:content";
 import Layout from "../layouts/Layout.astro";
@@ -46,6 +46,8 @@ const yearsInPractice = new Date().getFullYear() - settings.founded;
       class="absolute inset-0 h-full w-full object-cover"
       widths={[800, 1200, 1800]}
       sizes="100vw"
+      format="avif"
+      quality={53}
       loading="eager"
       fetchpriority="high"
     />
@@ -84,13 +86,15 @@ const yearsInPractice = new Date().getFullYear() - settings.founded;
                       alt={founder.photoAlt ?? founder.name}
                       widths={[400, 600, 800]}
                       sizes="(min-width: 640px) 50vw, 100vw"
+                      format="avif"
+                      quality={50}
                       class="h-full w-full object-cover grayscale"
                     />
                   ) : (
                     <div
                       class="flex h-full w-full items-center justify-center"
                       role="img"
-                      aria-label={`Portrait of ${founder.name} — coming soon`}
+                      aria-label={`Portrait of ${founder.name} - coming soon`}
                     >
                       <span class="font-heading text-6xl text-stone/40">
                         {founder.name.charAt(0)}
@@ -170,14 +174,16 @@ const yearsInPractice = new Date().getFullYear() - settings.founded;
         <p class="mt-2 text-sm uppercase tracking-[0.15em] text-stone">Years in practice</p>
       </Reveal>
       {
-        stats.map((stat, index) => (
-          <Reveal client:visible delay={(index + 1) * 0.06} className="text-center md:text-left">
-            <p class="font-heading text-4xl tracking-tight text-ink md:text-5xl">
-              <AnimatedCounter client:visible value={stat.value} suffix={stat.suffix} />
-            </p>
-            <p class="mt-2 text-sm uppercase tracking-[0.15em] text-stone">{stat.label}</p>
-          </Reveal>
-        ))
+        stats
+          .filter((stat) => stat.value !== 0)
+          .map((stat, index) => (
+            <Reveal client:visible delay={(index + 1) * 0.06} className="text-center md:text-left">
+              <p class="font-heading text-4xl tracking-tight text-ink md:text-5xl">
+                <AnimatedCounter client:visible value={stat.value} suffix={stat.suffix} />
+              </p>
+              <p class="mt-2 text-sm uppercase tracking-[0.15em] text-stone">{stat.label}</p>
+            </Reveal>
+          ))
       }
     </div>
   </section>

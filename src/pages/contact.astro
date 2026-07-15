@@ -44,6 +44,7 @@ const whatsappHref = `https://wa.me/${settings.whatsapp}?text=${encodeURICompone
       {
         formAction ? (
           <form
+            id="contact-form"
             action={formAction}
             method="POST"
             class="grid gap-6 sm:grid-cols-2"
@@ -78,10 +79,20 @@ const whatsappHref = `https://wa.me/${settings.whatsapp}?text=${encodeURICompone
             {/* Honeypot spam trap - hidden from real visitors */}
             <input type="text" name="_gotcha" class="hidden" tabindex={-1} autocomplete="off" />
 
+            <p
+              id="form-error"
+              role="alert"
+              class="hidden text-sm text-red-700 sm:col-span-2"
+            >
+              Something went wrong sending your message. Please try again, or reach us
+              directly by phone, email, or WhatsApp.
+            </p>
+
             <div class="sm:col-span-2">
               <button
+                id="form-submit"
                 type="submit"
-                class="rounded-full bg-ink px-8 py-4 text-sm font-medium tracking-wide text-paper transition-transform hover:scale-[1.03]"
+                class="rounded-full bg-ink px-8 py-4 text-sm font-medium tracking-wide text-paper transition-transform hover:scale-[1.03] disabled:opacity-60 disabled:hover:scale-100"
               >
                 Send Enquiry
               </button>
@@ -104,9 +115,13 @@ const whatsappHref = `https://wa.me/${settings.whatsapp}?text=${encodeURICompone
       <div class="space-y-8 text-sm">
         <div>
           <p class="text-xs uppercase tracking-[0.15em] text-stone">Phone</p>
-          <a href={settings.phoneHref} class="mt-2 block font-heading text-xl hover:text-accent">
-            {settings.phone}
-          </a>
+          {
+            settings.phones.map((phone) => (
+              <a href={phone.href} class="mt-2 block font-heading text-xl hover:text-accent">
+                {phone.number}
+              </a>
+            ))
+          }
         </div>
         <div>
           <p class="text-xs uppercase tracking-[0.15em] text-stone">Email</p>
@@ -114,14 +129,28 @@ const whatsappHref = `https://wa.me/${settings.whatsapp}?text=${encodeURICompone
             {settings.email}
           </a>
         </div>
-        <div>
-          <p class="text-xs uppercase tracking-[0.15em] text-stone">Studio</p>
-          <p class="mt-2 leading-relaxed text-stone">
-            {settings.addressLine1}{settings.addressLine2 && `, ${settings.addressLine2}`}<br />
-            {settings.addressCity}, {settings.addressState} {settings.addressPostalCode}<br />
-            {settings.addressCountry}
-          </p>
-        </div>
+        {
+          settings.addresses.map((address) => (
+            <div>
+              <p class="text-xs uppercase tracking-[0.15em] text-stone">
+                {address.label ?? "Studio"}
+              </p>
+              <p class="mt-2 leading-relaxed text-stone">
+                {address.line1}
+                {address.line2 && (
+                  <>
+                    <br />
+                    {address.line2}
+                  </>
+                )}
+                <br />
+                {address.city}, {address.state} {address.postalCode}
+                <br />
+                {address.country}
+              </p>
+            </div>
+          ))
+        }
         <div>
           <p class="text-xs uppercase tracking-[0.15em] text-stone">Business Hours</p>
           <p class="mt-2 leading-relaxed text-stone">{settings.hours}</p>
@@ -149,4 +178,100 @@ const whatsappHref = `https://wa.me/${settings.whatsapp}?text=${encodeURICompone
       referrerpolicy="no-referrer-when-downgrade"
     ></iframe>
   </section>
+
+  {
+    formAction && (
+      <div
+        id="success-modal"
+        class="fixed inset-0 z-[100] hidden items-center justify-center bg-ink/80 p-4"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="success-modal-heading"
+      >
+        <div class="max-w-sm bg-paper p-8 text-center shadow-xl">
+          <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-accent text-ink">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <h2 id="success-modal-heading" class="mt-5 font-heading text-xl tracking-tight text-ink">
+            Message sent
+          </h2>
+          <p class="mt-2 text-sm leading-relaxed text-stone">
+            Thanks for reaching out - we typically respond within one business day.
+          </p>
+          <button
+            id="success-modal-close"
+            type="button"
+            class="mt-7 inline-block rounded-full bg-ink px-7 py-3 text-sm font-medium tracking-wide text-paper transition-transform hover:scale-[1.03]"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    )
+  }
 </Layout>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  const submitButton = document.getElementById("form-submit") as HTMLButtonElement | null;
+  const errorMessage = document.getElementById("form-error");
+  const modal = document.getElementById("success-modal");
+  const modalClose = document.getElementById("success-modal-close");
+
+  function openModal() {
+    if (!modal) return;
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+    document.body.classList.add("overflow-hidden");
+    modalClose?.focus();
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+    document.body.classList.remove("overflow-hidden");
+    submitButton?.focus();
+  }
+
+  modalClose?.addEventListener("click", closeModal);
+  modal?.addEventListener("click", (event) => {
+    if (event.target === modal) closeModal();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !modal?.classList.contains("hidden")) closeModal();
+  });
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    errorMessage?.classList.add("hidden");
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
+    }
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        form.reset();
+        openModal();
+      } else {
+        errorMessage?.classList.remove("hidden");
+      }
+    } catch {
+      errorMessage?.classList.remove("hidden");
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = "Send Enquiry";
+      }
+    }
+  });
+</script>

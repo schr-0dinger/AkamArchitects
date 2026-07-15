@@ -2,6 +2,15 @@
 title: "New Construction"
 description: "Ground-up residential and commercial builds, planned around climate, orientation, and the realities of the site from day one."
 detailIntro: "For ground-up projects, AKAM brings design thinking and construction awareness together from the beginning."
+image: "../../assets/expertise/new-construction/card.jpg"
+imageAlt: "High-rise building under construction with a tower crane"
+gallery:
+  - image: "../../assets/expertise/new-construction/gallery-1.jpg"
+    alt: "Tower crane used in building construction"
+  - image: "../../assets/expertise/new-construction/gallery-2.jpg"
+    alt: "Unfinished concrete building with a tower crane"
+  - image: "../../assets/expertise/new-construction/gallery-3.jpg"
+    alt: "Low-angle view of a high-rise building under construction"
 order: 5
 ---
 

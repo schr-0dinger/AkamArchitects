@@ -2,6 +2,15 @@
 title: "Project Management"
 description: "A single point of accountability from budget to schedule, coordinating consultants, contractors, and authorities on your behalf."
 detailIntro: "Project management keeps the design, budget, timeline, and site decisions moving in the same direction."
+image: "../../assets/expertise/project-management/card.jpg"
+imageAlt: "Team seated around a table in a planning meeting"
+gallery:
+  - image: "../../assets/expertise/project-management/gallery-1.jpg"
+    alt: "Reviewing project documents at a table"
+  - image: "../../assets/expertise/project-management/gallery-2.jpg"
+    alt: "Signing project documents"
+  - image: "../../assets/expertise/project-management/gallery-3.jpg"
+    alt: "Handshake closing a project agreement"
 order: 3
 ---
 

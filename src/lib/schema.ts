@@ -21,6 +21,8 @@ export function organizationSchema(settings: SiteSettings) {
 }
 
 export function localBusinessSchema(settings: SiteSettings) {
+  const primaryAddress = settings.addresses[0];
+
   return {
     "@context": "https://schema.org",
     "@type": "Architect",
@@ -28,14 +30,14 @@ export function localBusinessSchema(settings: SiteSettings) {
     name: settings.name,
     image: settings.logoFull.src,
     url: siteUrl,
-    telephone: settings.phone,
+    telephone: settings.phones.map((phone) => phone.number),
     email: settings.email,
     address: {
       "@type": "PostalAddress",
-      streetAddress: settings.addressLine1,
-      addressLocality: settings.addressCity,
-      addressRegion: settings.addressState,
-      postalCode: settings.addressPostalCode,
+      streetAddress: [primaryAddress.line1, primaryAddress.line2].filter(Boolean).join(", "),
+      addressLocality: primaryAddress.city,
+      addressRegion: primaryAddress.state,
+      postalCode: primaryAddress.postalCode,
       addressCountry: "IN",
     },
   };

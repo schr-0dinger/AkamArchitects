@@ -1,7 +1,9 @@
 ---
 import { getCollection, type CollectionEntry, render } from "astro:content";
+import { Image, getImage } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
 import Reveal from "../../components/Reveal.tsx";
+import Lightbox from "../../components/Lightbox.tsx";
 import { withBase } from "../../lib/urls";
 
 export async function getStaticPaths() {
@@ -17,8 +19,20 @@ interface Props {
 }
 
 const { entry } = Astro.props as Props;
-const { title, description, detailIntro } = entry.data;
+const { title, description, detailIntro, image, imageAlt, gallery } = entry.data;
 const { Content } = await render(entry);
+
+const galleryImages = await Promise.all(
+  gallery.map(async (item) => {
+    const optimized = await getImage({ src: item.image, width: 1400, format: "avif", quality: 53 });
+    return {
+      src: optimized.src,
+      alt: item.alt,
+      width: optimized.attributes.width as number,
+      height: optimized.attributes.height as number,
+    };
+  }),
+);
 ---
 
 <Layout title={title} description={description}>
@@ -40,10 +54,22 @@ const { Content } = await render(entry);
     </Reveal>
   </section>
 
-  <section class="container-page grid gap-10 pb-20 md:grid-cols-[0.8fr_1.4fr] md:pb-28">
+  <section class="container-page grid gap-10 pb-20 pt-6 md:grid-cols-[0.8fr_1.4fr] md:pb-28">
     <Reveal client:visible>
       <div class="border-t border-hairline pt-6">
-        <p class="text-xs uppercase tracking-[0.2em] text-stone">How We Help</p>
+        <div class="aspect-[4/3] overflow-hidden bg-mist">
+          <Image
+            src={image}
+            alt={imageAlt}
+            widths={[400, 600, 800]}
+            sizes="(min-width: 768px) 30vw, 100vw"
+            format="avif"
+            quality={50}
+            loading="eager"
+            class="h-full w-full object-cover grayscale"
+          />
+        </div>
+        <p class="mt-6 text-xs uppercase tracking-[0.2em] text-stone">How We Help</p>
         <p class="mt-4 max-w-xs text-sm leading-relaxed text-stone">{description}</p>
       </div>
     </Reveal>
@@ -53,6 +79,21 @@ const { Content } = await render(entry);
       </div>
     </Reveal>
   </section>
+
+  {
+    galleryImages.length > 0 && (
+      <section class="container-page pb-20 md:pb-28">
+        <Reveal client:visible>
+          <h2 class="border-t border-hairline pt-6 font-heading text-2xl tracking-tight">
+            Gallery
+          </h2>
+        </Reveal>
+        <div class="mt-8">
+          <Lightbox client:visible images={galleryImages} />
+        </div>
+      </section>
+    )
+  }
 
   <section class="border-t border-hairline bg-accent py-16 md:py-20">
     <div class="container-page flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">

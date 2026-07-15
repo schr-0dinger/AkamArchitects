@@ -2,6 +2,15 @@
 title: "Construction Supervision"
 description: "On-site oversight that holds the design intent through every handover between trades, from foundation to finish."
 detailIntro: "Construction supervision protects the design intent where it matters most: on site, in real time."
+image: "../../assets/expertise/construction-supervision/card.jpg"
+imageAlt: "Site team reviewing a blueprint on a laptop, wearing hard hats"
+gallery:
+  - image: "../../assets/expertise/construction-supervision/gallery-1.jpg"
+    alt: "Site supervisor wearing a hard hat"
+  - image: "../../assets/expertise/construction-supervision/gallery-2.jpg"
+    alt: "Inspector reviewing a house interior during construction"
+  - image: "../../assets/expertise/construction-supervision/gallery-3.jpg"
+    alt: "Supervisor standing under structural framing on site"
 order: 4
 ---
 

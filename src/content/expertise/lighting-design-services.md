@@ -2,6 +2,15 @@
 title: "Lighting Design Services"
 description: "Layered architectural lighting for homes, workplaces, hospitality spaces, and exterior environments."
 detailIntro: "Lighting is treated as part of the architecture, shaping mood, comfort, visibility, and the way materials are experienced."
+image: "../../assets/expertise/lighting-design-services/card.jpg"
+imageAlt: "Contemporary pendant lamp in a minimalist interior"
+gallery:
+  - image: "../../assets/expertise/lighting-design-services/gallery-1.jpg"
+    alt: "Pendant lights illuminating an interior space"
+  - image: "../../assets/expertise/lighting-design-services/gallery-2.jpg"
+    alt: "Pendant lamps used as a lighting feature"
+  - image: "../../assets/expertise/lighting-design-services/gallery-3.jpg"
+    alt: "Pendant lamp against a warm-toned ceiling"
 order: 7
 ---
 

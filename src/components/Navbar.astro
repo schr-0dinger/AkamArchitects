@@ -30,20 +30,21 @@ const currentPath = Astro.url.pathname;
       class={`site-logo-link relative flex items-center gap-3 transition-[height] duration-300 ${
         largeHomeLogo ? "h-20 md:h-28" : "h-8 md:h-10"
       }`}
-      aria-label={settings.name}
     >
       <span class="logo-mark relative flex h-full shrink-0 items-center">
         <Image
           src={settings.logoIcon}
-          alt={settings.logoAlt}
-          height={240}
+          alt=""
+          height={340}
+          format="avif"
           class={`logo-light h-full w-auto transition-opacity duration-300 ${transparent ? "opacity-0" : ""}`}
         />
         <Image
           src={settings.logoIconOnDark}
           alt=""
           aria-hidden="true"
-          height={240}
+          height={340}
+          format="avif"
           class={`logo-dark absolute inset-0 h-full w-auto transition-opacity duration-300 ${transparent ? "" : "opacity-0"}`}
         />
       </span>

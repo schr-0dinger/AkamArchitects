@@ -2,6 +2,15 @@
 title: "Renovation & Retrofits"
 description: "Sensitive additions and upgrades that respect an existing structure's character while improving how it performs."
 detailIntro: "Renovation work asks for restraint: knowing what to preserve, what to repair, and where a careful intervention can transform use."
+image: "../../assets/expertise/renovation/card.jpg"
+imageAlt: "Renovation work underway inside a home"
+gallery:
+  - image: "../../assets/expertise/renovation/gallery-1.jpg"
+    alt: "Painting an interior wall during renovation"
+  - image: "../../assets/expertise/renovation/gallery-2.jpg"
+    alt: "Workers painting interior walls"
+  - image: "../../assets/expertise/renovation/gallery-3.jpg"
+    alt: "Room mid-renovation"
 order: 6
 ---
 

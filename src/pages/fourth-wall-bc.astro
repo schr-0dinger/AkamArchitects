@@ -1,4 +1,4 @@
----
+﻿---
 import { getEntry } from "astro:content";
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
@@ -7,7 +7,7 @@ import { withBase } from "../lib/urls";
 import fourthWallLogo from "../assets/partners/fourth-wall-bc-logo.png";
 
 const page = await getEntry("pages", "fourth-wall-bc");
-const { eyebrow, heading, intro } = page?.data ?? {};
+const { eyebrow, heading, intro, heroImage, heroImageAlt, gallery = [] } = page?.data ?? {};
 ---
 
 <Layout
@@ -25,7 +25,8 @@ const { eyebrow, heading, intro } = page?.data ?? {};
         <Image
           src={fourthWallLogo}
           alt="Fourth Wall BC logo"
-          height={104}
+          height={150}
+          format="avif"
           class="max-h-20 w-auto max-w-[14rem] object-contain grayscale contrast-125"
         />
       </div>
@@ -33,13 +34,59 @@ const { eyebrow, heading, intro } = page?.data ?? {};
       {intro && (
         <p class="mt-10 max-w-2xl leading-relaxed text-stone">{intro}</p>
       )}
-
-      <a
-        href={withBase("/")}
-        class="mt-10 inline-block text-sm tracking-wide underline underline-offset-4 hover:text-accent"
-      >
-        Back to Home
-      </a>
     </Reveal>
+  </section>
+
+  {
+    heroImage && (
+      <Reveal client:visible>
+        <div class="container-page aspect-[16/9] overflow-hidden bg-mist">
+          <Image
+            src={heroImage}
+            alt={heroImageAlt ?? ""}
+            widths={[800, 1200, 1800]}
+            sizes="100vw"
+            format="avif"
+            quality={53}
+            loading="eager"
+            class="h-full w-full object-cover grayscale"
+          />
+        </div>
+      </Reveal>
+    )
+  }
+
+  {
+    gallery.length > 0 && (
+      <section class="container-page py-14 md:py-16">
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3">
+          {gallery.map((item, index) => (
+            <Reveal client:visible delay={index * 0.06}>
+              <div class="aspect-square overflow-hidden bg-mist">
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  widths={[300, 500, 700]}
+                  sizes="(min-width: 640px) 33vw, 50vw"
+                  format="avif"
+                  quality={50}
+                  loading="lazy"
+                  class="h-full w-full object-cover grayscale"
+                />
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <section class="container-page max-w-3xl pb-24">
+    <a
+      href={withBase("/")}
+      class="inline-block text-sm tracking-wide underline underline-offset-4 hover:text-accent"
+    >
+      Back to Home
+    </a>
   </section>
 </Layout>

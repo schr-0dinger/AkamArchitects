@@ -6,10 +6,10 @@ export const siteUrl = absoluteUrl("/").replace(/\/$/, "");
 export const siteLocale = "en_IN";
 
 export const navLinks = [
+  { label: "About", href: withBase("/about") },
   { label: "Projects", href: withBase("/projects") },
   { label: "Gallery", href: withBase("/gallery") },
   { label: "Expertise", href: withBase("/expertise") },
-  { label: "About", href: withBase("/about") },
   { label: "Contact", href: withBase("/contact") },
 ] as const;
 

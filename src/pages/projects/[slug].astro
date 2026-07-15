@@ -55,7 +55,7 @@ const related = relatedProjects.length > 0 ? relatedProjects : fallbackRelated;
 
 const galleryImages = await Promise.all(
   gallery.map(async (item) => {
-    const optimized = await getImage({ src: item.image, width: 1400 });
+    const optimized = await getImage({ src: item.image, width: 1400, format: "avif", quality: 53 });
     return { src: optimized.src, alt: item.alt, width: optimized.attributes.width as number, height: optimized.attributes.height as number };
   }),
 );
@@ -81,6 +81,8 @@ const breadcrumb = breadcrumbSchema([
       class="absolute inset-0 h-full w-full object-cover"
       widths={[800, 1200, 1920, 2400]}
       sizes="100vw"
+      format="avif"
+      quality={53}
       loading="eager"
       fetchpriority="high"
     />

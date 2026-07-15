@@ -2,6 +2,15 @@
 title: "Interior Design"
 description: "Spatial planning, materials, and architectural lighting for homes and workplaces - led by a specialist lighting designer on staff."
 detailIntro: "Our interiors are designed as an extension of the architecture: calm, usable, and tuned to light, material, and proportion."
+image: "../../assets/expertise/interior-design/card.jpg"
+imageAlt: "Modern living room interior with furniture and plants"
+gallery:
+  - image: "../../assets/expertise/interior-design/gallery-1.jpg"
+    alt: "Comfortable modern living room interior"
+  - image: "../../assets/expertise/interior-design/gallery-2.jpg"
+    alt: "Minimal modern room with contemporary furniture"
+  - image: "../../assets/expertise/interior-design/gallery-3.jpg"
+    alt: "Living room interior with sofa and floor lamp"
 order: 2
 ---
 

@@ -2,6 +2,15 @@
 title: "Product Design Services"
 description: "Custom objects, furniture, fixtures, and spatial products developed to suit a project's material language and use."
 detailIntro: "When a space needs a specific object or detail, product design lets us resolve it with the same care as the architecture."
+image: "../../assets/expertise/product-design-services/card.jpg"
+imageAlt: "Carpenter working with wood in a workshop"
+gallery:
+  - image: "../../assets/expertise/product-design-services/gallery-1.jpg"
+    alt: "Carpenter drilling a wooden plank in the workshop"
+  - image: "../../assets/expertise/product-design-services/gallery-2.jpg"
+    alt: "Interior of a woodworking workshop"
+  - image: "../../assets/expertise/product-design-services/gallery-3.jpg"
+    alt: "Measuring wood with a ruler during fabrication"
 order: 8
 ---
 

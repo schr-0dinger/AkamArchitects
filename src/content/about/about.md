@@ -39,7 +39,7 @@ stats:
   - value: 30
     suffix: ""
     label: "Flagship works"
-  - value: 3
+  - value: 0
     suffix: ""
     label: "Design awards"
 founders:

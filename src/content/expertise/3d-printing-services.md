@@ -2,6 +2,15 @@
 title: "3D Printing Services"
 description: "Prototype and small-format 3D printing support for architectural studies, products, components, and presentation pieces."
 detailIntro: "3D printing helps turn digital design into physical feedback quickly, making form, scale, and detail easier to test."
+image: "../../assets/expertise/3d-printing-services/card.jpg"
+imageAlt: "High-tech 3D printer at work in a workshop"
+gallery:
+  - image: "../../assets/expertise/3d-printing-services/gallery-1.jpg"
+    alt: "3D-printed architectural model held in hand"
+  - image: "../../assets/expertise/3d-printing-services/gallery-2.jpg"
+    alt: "Close-up of a 3D-printed scale model"
+  - image: "../../assets/expertise/3d-printing-services/gallery-3.jpg"
+    alt: "Architect working on a physical model for reference"
 order: 9
 ---
 
