@@ -20,7 +20,7 @@ aboutBody: Founded by Ar. Karthik and Ar. Anakha, AKAM Architects integrates
   architecture, product design, and lighting design to create spaces that are
   sustainable, timeless, and deeply connected to their environment. Every
   project is shaped by climate, context, and the people who inhabit it.
-aboutImage: ../../assets/about/hero.jpg
+aboutImage: /src/assets/uploads/istockphoto-1396814518-612x612.jpg
 aboutImageAlt: Glass facade reflections (placeholder photo)
 testimonialsEyebrow: Client Voices
 testimonialsHeading: What it's like to build with us.
